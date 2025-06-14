@@ -1,0 +1,254 @@
+/* Container styles */
+.container {
+ 
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero section styles */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+@media (min-width: 992px) {
+  .hero-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Astrologer container styles */
+.astrologer-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.astrologer-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.sunburst-circle {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  /* background: linear-gradient(to right, #fef3c7, #fdba74); */
+  opacity: 0.3;
+}
+
+.sunburst-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sunburst-line {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #fed7aa;
+  transform-origin: center;
+}
+
+.orbit-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit {
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid #fdba74;
+}
+
+.orbit-large {
+  height: 90%;
+  width: 90%;
+}
+
+.orbit-medium {
+  height: 70%;
+  width: 70%;
+}
+
+.orbit-small {
+  height: 50%;
+  width: 50%;
+}
+
+.orbit-dot {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  background-color: #f97316;
+  border-radius: 50%;
+}
+
+.orbit-dot-right {
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.orbit-dot-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.orbit-dot-left {
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.astrologer-image {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Services grid styles */
+.services-grid {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.services-grid-2 {
+  grid-template-columns: 1fr;
+}
+
+.services-grid-4 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .services-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .services-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .services-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Service card styles */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.service-card-featured {
+  background: linear-gradient(to right, #fef3c7, #fdba74);
+}
+
+.service-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background-color: #fef9c3;
+}
+
+.icon {
+  color: #eab308;
+}
+
+.service-title {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #166534;
+}
+
+.service-description {
+  margin-bottom: 16px;
+  flex-grow: 1;
+  text-align: center;
+  color: #4b5563;
+}
+
+.service-link {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  color: #15803d;
+  text-decoration: none;
+}
+
+.read-more-link:hover {
+  color: #166534;
+}
+
+.arrow-icon {
+  margin-left: 4px;
+  height: 16px;
+  width: 16px;
+}
+
+/* Book appointment button styles */
+.book-appointment-container {
+  display: flex;
+  justify-content: center;
+}
+
+.book-appointment-button {
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: #eab308;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.book-appointment-button:hover {
+  background-color: #ca8a04;
+}
