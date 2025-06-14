@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import '../css/Banner.css'
-
+import hand from "../Images/hand.png"
 export default function HeroBanner() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -15,16 +15,16 @@ export default function HeroBanner() {
       buttonText: "Explore Services",
     },
     {
-      title: "Transform Your Environment",
-      subtitle: "Vastu. Astrology. Energy.",
-      description: "Discover how ancient wisdom can create positive energy flow in your modern spaces.",
-      buttonText: "Learn More",
+      title: "Discover Today's Horoscope Forecast",
+      subtitle: "Your Stars Speak",
+      description: "Find out what the stars have planned for you today. Check your daily horoscope and navigate your day with confidence and clarity.",
+      buttonText: "Check Horoscope",
     },
     {
-      title: "Unlock Your Potential",
-      subtitle: "Vastu. Astrology. Energy.",
-      description: "Align your surroundings with cosmic energies to manifest success and well-being.",
-      buttonText: "Get Started",
+      title: "Empower Your Life with Astrological Guidance",
+      subtitle: "Trusted by Thousands.",
+      description: "Our expert astrologers provide deep insight into your life's journey. Unlock the path to success, peace, and prosperity through personalized consultations..",
+      buttonText: "Book An Appointment",
     },
   ]
 
@@ -50,7 +50,7 @@ export default function HeroBanner() {
   return (
     <section className="hero-section">
       <div className="container-12">
-        <div className="container-10">
+        <div className="container-12">
           <div className="grid-row">
             {/* Left side - Text content (6 columns) */}
             <div className="grid-col-6 text-content">
@@ -109,9 +109,10 @@ export default function HeroBanner() {
                 </div>
 
                 {/* Person image */}
-                <div className="person-image">
-                  <img src="/placeholder.svg" alt="Astrologer" className="person-img" />
-                </div>
+             <div className="person-image">
+  <img src={hand}alt="Astrologer" className="person-img" />
+</div>
+
               </div>
             </div>
           </div>
