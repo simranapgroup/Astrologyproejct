@@ -50,12 +50,9 @@ export default function HeroBanner() {
 
   return (
     <section className="hero-section">
-     
       <div className="container-12">
         <div className="container-12">
-           
           <div className="grid-row">
-               <div className="banner-edge"></div>
             {/* Left side - Text content (6 columns) */}
             <div className="grid-col-6 text-content">
               <div className="slider-container">
@@ -111,6 +108,9 @@ export default function HeroBanner() {
           </div>
         </div>
       </div>
+
+      {/* Bottom edge shape */}
+      <div className="banner-bottom-edge"></div>
     </section>
   )
 }
