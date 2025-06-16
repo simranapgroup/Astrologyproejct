@@ -27,7 +27,7 @@ export default function HeroBanner() {
       title: "Empower Your Life with Astrological Guidance",
       subtitle: "Trusted by Thousands.",
       description:
-        "Our expert astrologers provide deep insight into your life's journey. Unlock the path to success, peace, and prosperity through personalized consultations..",
+        "Our expert astrologers provide deep insight into your life's journey. Unlock the path to success, peace, and prosperity through personalized consultations.",
       buttonText: "Book An Appointment",
     },
   ]
@@ -51,65 +51,62 @@ export default function HeroBanner() {
   return (
     <section className="hero-section">
       <div className="container-12">
-        <div className="container-12">
-          <div className="grid-row">
-            {/* Left side - Text content (6 columns) */}
-            <div className="grid-col-6 text-content">
-              <div className="slider-container">
-                {slides.map((slide, index) => (
-                  <div key={index} className={`slide ${index === currentSlide ? "active" : ""}`}>
-                    <div className="slide-content">
-                      <p className="subtitle">{slide.subtitle}</p>
-                      <h1 className="title">{slide.title}</h1>
-                      <p className="description">{slide.description}</p>
-                      <button className="cta-button">{slide.buttonText}</button>
-                    </div>
+        <div className="grid-row">
+          {/* Left side - Text content (6 columns) */}
+          <div className="grid-col-6 text-content">
+            <div className="slider-container">
+              {slides.map((slide, index) => (
+                <div key={index} className={`slide ${index === currentSlide ? "active" : ""}`}>
+                  <div className="slide-content">
+                    <p className="subtitle">{slide.subtitle}</p>
+                    <h1 className="title">{slide.title}</h1>
+                    <p className="description">{slide.description}</p>
+                    <button className="cta-button">{slide.buttonText}</button>
                   </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Slider controls */}
+            <div className="slider-controls">
+              <button onClick={prevSlide} className="arrow-button prev-button">
+                ‹<span className="sr-only">Previous slide</span>
+              </button>
+
+              <div className="dots-container">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`dot ${index === currentSlide ? "active" : ""}`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
                 ))}
               </div>
 
-              {/* Slider controls */}
-              <div className="slider-controls">
-                <button onClick={prevSlide} className="arrow-button prev-button">
-                  ‹<span className="sr-only">Previous slide</span>
-                </button>
-
-                <div className="dots-container">
-                  {slides.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`dot ${index === currentSlide ? "active" : ""}`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <button onClick={nextSlide} className="arrow-button next-button">
-                  ›<span className="sr-only">Next slide</span>
-                </button>
-              </div>
+              <button onClick={nextSlide} className="arrow-button next-button">
+                ›<span className="sr-only">Next slide</span>
+              </button>
             </div>
+          </div>
 
-            {/* Right side - Image with spinning circle (6 columns) */}
-            <div className="grid-col-6 image-grid">
-              <div className="spinning-circle-container">
-                {/* Spinning service image - YE GHUMEGA! */}
-                <div className="spinning-service">
-                  <img src={service || "/placeholder.svg"} alt="Astrology Services" className="service-img" />
-                </div>
+          {/* Right side - Image with spinning circle (6 columns) */}
+          <div className="grid-col-6 image-grid">
+            <div className="spinning-circle-container">
+              {/* Spinning service image - YE GHUMEGA! */}
+              <div className="spinning-service">
+                <img src={service || "/placeholder.svg"} alt="Astrology Services" className="service-img" />
+              </div>
 
-                {/* Person image */}
-                <div className="person-image">
-                  <img src={handImage || "/placeholder.svg"} alt="Astrologer" className="person-img" />
-                </div>
+              {/* Person image */}
+              <div className="person-image">
+                <img src={handImage || "/placeholder.svg"} alt="Astrologer" className="person-img" />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom edge shape */}
       <div className="banner-bottom-edge"></div>
     </section>
   )

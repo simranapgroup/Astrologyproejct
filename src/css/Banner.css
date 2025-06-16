@@ -38,10 +38,9 @@
   padding: 0;
 }
 
-
 /* 12-column grid system */
 .container-12 {
-  width: 93.33%;
+  width: 86.33%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 15px;
@@ -234,6 +233,7 @@
   width: 400px;
   height: 400px;
   grid-area: image;
+  margin: 20px auto;
 }
 
 .spinning-service {
@@ -280,7 +280,34 @@
   object-fit: contain;
 }
 
-/* Responsive styles */
+/* General styles for larger screens */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Adjust as needed */
+  overflow: hidden;
+  background-color: #f0f0f0; /* Example background color */
+}
+
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #333; /* Example text color */
+}
+
+.banner-title {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.banner-description {
+  font-size: 1.2em;
+}
+
+/* Media queries for responsiveness */
 @media (max-width: 1200px) {
   .container-12 {
     padding: 0 30px;
@@ -303,27 +330,32 @@
   }
 }
 
+/* Mobile styles - Image comes below text */
 @media (max-width: 768px) {
   .grid-row {
     grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 0;
   }
 
   .grid-col-6 {
-    grid-column: span 12;
+    grid-column: span 1;
   }
 
   .text-content {
-    order: 2;
+    order: 1;
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 0 20px 0;
+    margin-top: 135px;
   }
 
   .image-grid {
-    order: 1;
-    height: 350px;
+    order: 2;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 40px;
   }
 
   .title {
@@ -334,15 +366,17 @@
   .description {
     margin: 0 auto 30px;
     min-height: 70px;
+    font-size: 18px;
+    text-align: left;
   }
 
   .slider-controls {
-    justify-content: center;
+    margin-bottom: 30px;
   }
 
   .spinning-circle-container {
-    width: 280px;
-    height: 280px;
+    width: 350px;
+    height: 350px;
     position: relative;
   }
 
@@ -351,21 +385,21 @@
   }
 
   .person-image {
-    height: 75%;
-    bottom: 45px;
+    height: 85%;
+    bottom: 55px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .person-img {
-    height: 100%;
+    height: 120%;
     width: auto;
     object-fit: contain;
   }
 
   .spinning-service {
-    width: 120%;
-    height: 130%;
+    width: 135%;
+    height: 145%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -373,8 +407,8 @@
   }
 
   .service-img {
-    width: 100%;
-    height: 100%;
+    width: 105%;
+    height: 110%;
     object-fit: contain;
   }
 
@@ -389,12 +423,12 @@
   }
 
   .image-grid {
-    height: 300px;
+    height: 400px;
   }
 
   .spinning-circle-container {
-    width: 240px;
-    height: 240px;
+    width: 300px;
+    height: 300px;
   }
 
   .slider-container {
@@ -402,25 +436,47 @@
   }
 
   .title {
-    font-size: 32px;
+    font-size: 27px;
     min-height: 80px;
+    text-align: left;
+    font-weight: 700;
   }
 
   .description {
     min-height: 60px;
   }
-
+  .subtitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #2d5a4f;
+    line-height: 1.4;
+    font-family: "Philosopher", sans-serif;
+    text-align: left;
+  }
   .person-image {
-    height: 70%;
-    bottom: 35px;
+    height: 80%;
+    bottom: 45px;
+  }
+
+  .person-img {
+    height: 115%;
+    width: auto;
+    object-fit: contain;
   }
 
   .spinning-service {
-    width: 115%;
-    height: 125%;
+    width: 130%;
+    height: 140%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .service-img {
+    width: 100%;
+    height: 105%;
+    object-fit: contain;
   }
 
   .banner-bottom-edge {
@@ -430,25 +486,37 @@
 
 @media (max-width: 480px) {
   .spinning-circle-container {
-    /* width: 200px;
-    height: 200px;
-    margin-top: 0px; */
+    width: 260px;
+    height: 260px;
   }
 
   .image-grid {
-    height: 250px;
+    height: 350px;
+    padding-bottom: 60px;
   }
 
   .person-image {
-    height: 65%;
-    bottom: 25px;
+    height: 75%;
+    bottom: 35px;
+  }
+
+  .person-img {
+    height: 144%;
+    width: auto;
+    object-fit: contain;
   }
 
   .spinning-service {
-    width: 110%;
-    height: 115%;
+    width: 125%;
+    height: 130%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .service-img {
+    width: 95%;
+    height: 100%;
+    object-fit: contain;
   }
 }
