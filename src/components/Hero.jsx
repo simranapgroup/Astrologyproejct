@@ -18,15 +18,15 @@ import Footer from "./Footer";
 const Hero = () => {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar /> 
       <Banner/>
-  {/* <CommunicationButtons/> */}
+  <CommunicationButtons/> 
    
-   {/* <SecondSection/> */}
+   {/* <SecondSection/>  */}
 {/* <Services/> */}
-{/* <Blog/>
-<News/> */}
-{/* <Footer/> */}
+<Blog/>
+<News/>
+<Footer/>
 
     </div>
   );

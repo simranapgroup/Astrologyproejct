@@ -1,8 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import '../css/Banner.css'
-import hand from "../Images/hand.png"
+import "../css/Banner.css"
+import handImage from "../Images/hand.png"
+import service from "../Images/service.png"
+
 export default function HeroBanner() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -17,13 +19,15 @@ export default function HeroBanner() {
     {
       title: "Discover Today's Horoscope Forecast",
       subtitle: "Your Stars Speak",
-      description: "Find out what the stars have planned for you today. Check your daily horoscope and navigate your day with confidence and clarity.",
+      description:
+        "Find out what the stars have planned for you today. Check your daily horoscope and navigate your day with confidence and clarity.",
       buttonText: "Check Horoscope",
     },
     {
       title: "Empower Your Life with Astrological Guidance",
       subtitle: "Trusted by Thousands.",
-      description: "Our expert astrologers provide deep insight into your life's journey. Unlock the path to success, peace, and prosperity through personalized consultations..",
+      description:
+        "Our expert astrologers provide deep insight into your life's journey. Unlock the path to success, peace, and prosperity through personalized consultations..",
       buttonText: "Book An Appointment",
     },
   ]
@@ -44,14 +48,14 @@ export default function HeroBanner() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
   }
 
-  // Create array of 24 elements for radial lines
-  const radialLines = Array.from({ length: 24 }, (_, i) => i)
-
   return (
     <section className="hero-section">
+     
       <div className="container-12">
         <div className="container-12">
+           
           <div className="grid-row">
+               <div className="banner-edge"></div>
             {/* Left side - Text content (6 columns) */}
             <div className="grid-col-6 text-content">
               <div className="slider-container">
@@ -93,26 +97,15 @@ export default function HeroBanner() {
             {/* Right side - Image with spinning circle (6 columns) */}
             <div className="grid-col-6 image-grid">
               <div className="spinning-circle-container">
-                <div className="spinning-circle">
-                  {/* Radial lines */}
-                  {radialLines.map((i) => (
-                    <div key={i} className="radial-line" style={{ transform: `rotate(${i * 15}deg)` }}></div>
-                  ))}
-
-                  {/* Circle dots */}
-                  <div className="circle-dot dot-top"></div>
-                  <div className="circle-dot dot-right"></div>
-                  <div className="circle-dot dot-bottom-right"></div>
-                  <div className="circle-dot dot-bottom"></div>
-                  <div className="circle-dot dot-top-left"></div>
-                  <div className="circle-dot dot-left"></div>
+                {/* Spinning service image - YE GHUMEGA! */}
+                <div className="spinning-service">
+                  <img src={service || "/placeholder.svg"} alt="Astrology Services" className="service-img" />
                 </div>
 
                 {/* Person image */}
-             <div className="person-image">
-  <img src={hand}alt="Astrologer" className="person-img" />
-</div>
-
+                <div className="person-image">
+                  <img src={handImage || "/placeholder.svg"} alt="Astrologer" className="person-img" />
+                </div>
               </div>
             </div>
           </div>
