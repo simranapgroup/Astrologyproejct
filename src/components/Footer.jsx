@@ -29,44 +29,67 @@ const Footer = () => {
               <img src={flogo || "/placeholder.svg"} alt="Astro Vastu Logo" className="logo" />
             </div>
 
-            <p className="company-name">Astro Vastu Upay by Aditya Pareek. Best Astrologer in India</p>
+            <p className="company-name">Astro Vastu Upay by Aditya Pareek</p>
+            <p className="company-tagline">Best Astrologer in India</p>
 
-            <div className="contact-item">
-              <FaMapMarkerAlt className="icon" />
-              <p>
-                AP Group, Plot No. 2, EHTP Urban Estate, Near Hero Honda Chowk, Sector -34, Gurugram - 122001, Haryana,
-                India
-              </p>
-            </div>
+            <div className="contact-section">
+              <div className="contact-item">
+                <FaMapMarkerAlt className="icon" />
+                <p>
+                  AP Group, Plot No. 2, EHTP Urban Estate, Near Hero Honda Chowk, Sector -34, Gurugram - 122001,
+                  Haryana, India
+                </p>
+              </div>
 
-            <div className="contact-item">
-              <FaPhone className="icon" />
-              <p>+91-9289109203</p>
-            </div>
+              <div className="contact-item">
+                <FaPhone className="icon" />
+                <p>+91-9289109203</p>
+              </div>
 
-            <div className="contact-item">
-              <FaPhone className="icon" />
-              <p>+91-9289109259</p>
-            </div>
+              <div className="contact-item">
+                <FaPhone className="icon" />
+                <p>+91-9289109259</p>
+              </div>
 
-            <div className="contact-item">
-              <FaPhone className="icon" />
-              <p>01244242426</p>
-            </div>
+              <div className="contact-item">
+                <FaPhone className="icon" />
+                <p>01244242426</p>
+              </div>
 
-            <div className="contact-item">
-              <FaEnvelope className="icon" />
-              <p>astrovaastupaay@ap.group</p>
+              <div className="contact-item">
+                <FaEnvelope className="icon" />
+                <p>astrovaastupaay@ap.group</p>
+              </div>
             </div>
+          </div>
+
+          {/* Services */}
+          <div className="footer-column">
+            <h3 className="footer-heading">SERVICES</h3>
+            <ul className="footer-links">
+              {[
+                "Astrology Consultation",
+                "Vastu Shastra",
+                "Horoscope Reading",
+                "Gemstone Recommendation",
+                "Numerology",
+                "Palmistry",
+              ].map((item) => (
+                <li key={item} className="footer-link-item">
+                  <a href="#" className="footer-link">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Quick Links */}
           <div className="footer-column">
-            <h3 className="footer-heading">Quick Links</h3>
+            <h3 className="footer-heading">QUICK LINKS</h3>
             <ul className="footer-links">
               {["Home", "About Us", "Services", "Appointments", "Contact", "Horoscope"].map((item) => (
                 <li key={item} className="footer-link-item">
-                  <span className="bullet"></span>
                   <a href="#" className="footer-link">
                     {item}
                   </a>
@@ -75,13 +98,12 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Policies */}
+          {/* Legal & Social */}
           <div className="footer-column">
-            <h3 className="footer-heading">Policies</h3>
+            <h3 className="footer-heading">LEGAL</h3>
             <ul className="footer-links">
               {["Privacy Policy", "Terms & Conditions", "Cancellation & Refund", "Shipping & Delivery"].map((item) => (
                 <li key={item} className="footer-link-item">
-                  <span className="bullet"></span>
                   <a href="#" className="footer-link">
                     {item}
                   </a>
@@ -89,31 +111,28 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          {/* Social Media */}
-          <div className="footer-column">
-            <h3 className="footer-heading">Follow Us</h3>
-            <p>Connect with us on social platforms for updates & insights.</p>
-            <div className="social-grid">
-              {[
-                { icon: <FaFacebook className="social-icon" />, href: "#" },
-                { icon: <FaInstagram className="social-icon" />, href: "#" },
-                { icon: <FaTwitter className="social-icon" />, href: "#" },
-                { icon: <FaLinkedin className="social-icon" />, href: "#" },
-                { icon: <FaYoutube className="social-icon" />, href: "#" },
-                { icon: <FaEnvelope className="social-icon" />, href: "#" },
-              ].map((social, index) => (
-                <a key={index} href={social.href} className="social-link">
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
 
-        {/* Copyright */}
-        <div className="copyright">
-          <p>© {new Date().getFullYear()} Astro Vastu Upay by Aditya Pareek. All Rights Reserved.</p>
+        {/* Copyright and Social */}
+        <div className="footer-bottom">
+          <div className="copyright">
+            <p>© {new Date().getFullYear()} Astro Vastu Upay by Aditya Pareek. All Rights Reserved.</p>
+          </div>
+
+          <div className="social-grid">
+            {[
+              { icon: <FaFacebook className="social-icon" />, href: "#" },
+              { icon: <FaInstagram className="social-icon" />, href: "#" },
+              { icon: <FaTwitter className="social-icon" />, href: "#" },
+              { icon: <FaLinkedin className="social-icon" />, href: "#" },
+              { icon: <FaYoutube className="social-icon" />, href: "#" },
+              { icon: <FaEnvelope className="social-icon" />, href: "#" },
+            ].map((social, index) => (
+              <a key={index} href={social.href} className="social-link">
+                {social.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

@@ -2,23 +2,23 @@
 .footer {
   position: relative;
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: "Philosopher", sans-serif;
   min-height: 400px;
   overflow: hidden;
-  margin-top: 0; /* Remove the margin we added before */
+  margin-top: 0;
 }
 
 /* Decorative edge */
 .footer-edge {
   position: absolute;
-  top: 0; /* Position it at the top of the footer instead of above it */
+  top: 0;
   left: 0;
   right: 0;
   height: 100px;
-  background-image: url("../Images/shape.svg"); /* Use the provided edge image */
+  background-image: url("../Images/shape.svg");
   background-size: 100% 50px;
   background-repeat: no-repeat;
-  z-index: 3; /* Above everything including the background and overlay */
+  z-index: 3;
 }
 
 /* Background Image */
@@ -28,7 +28,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../Images/bg1.jpg"); /* Make sure this path is correct */
+  background-image: url("../Images/bg1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -43,15 +43,15 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: #111111; /* Dark background */
+  background-color: #111111;
   opacity: 0.87;
-  z-index: 1; /* Above the background image */
+  z-index: 1;
 }
 
 /* Content Layer */
 .footer-content {
   position: relative;
-  z-index: 2; /* Above background and overlay */
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px 16px;
@@ -66,21 +66,22 @@
 
 @media (min-width: 768px) {
   .footer-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 2fr 1fr 1fr 1fr;
   }
 }
 
 .footer-column {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 /* Logo */
 .logo-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
 }
 
 .logo {
@@ -91,10 +92,23 @@
 
 .company-name {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
-/* Contact */
+.company-tagline {
+  font-size: 14px;
+  color: #cccccc;
+  margin-bottom: 24px;
+}
+
+/* Contact Section */
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .contact-item {
   display: flex;
   align-items: flex-start;
@@ -102,23 +116,33 @@
 }
 
 .icon {
-  min-width: 20px;
-  height: 20px;
-  margin-top: 4px;
+  min-width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: #cccccc;
+}
+
+.contact-item p {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #cccccc;
 }
 
 /* Headings */
 .footer-heading {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffffff;
 }
 
 /* Links */
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -129,39 +153,58 @@
   align-items: center;
 }
 
-.bullet {
-  height: 8px;
-  width: 8px;
-  background-color: white;
-  border-radius: 50%;
-  margin-right: 8px;
-}
-
 .footer-link {
-  color: white;
+  color: #cccccc;
   text-decoration: none;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #333333;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Copyright */
+.copyright {
+  flex: 1;
+}
+
+.copyright p {
+  font-size: 14px;
+  color: #cccccc;
+  margin: 0;
 }
 
 /* Social media */
 .social-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .social-link {
   background-color: #2a7d6b;
-  height: 40px;
-  width: 40px;
+  height: 36px;
+  width: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s, transform 0.2s;
+  text-decoration: none;
 }
 
 .social-link:hover {
@@ -170,15 +213,29 @@
 }
 
 .social-icon {
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   color: white;
 }
 
-/* Copyright */
-.copyright {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid #6b6b6b;
-  text-align: center;
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .copyright {
+    order: 2;
+  }
+
+  .social-grid {
+    order: 1;
+    justify-content: center;
+  }
+
+  .logo-container {
+    justify-content: center;
+  }
 }

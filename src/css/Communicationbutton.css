@@ -45,6 +45,7 @@
 .service-title {
   font-size: 18px;
   font-weight: 500;
+   font-family: 'Philosopher';
   
 }
 .services-heading {
@@ -52,7 +53,8 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  margin-top: 90px;
+  margin-top: 50px;
+   font-family: 'Philosopher';
 }
 
 

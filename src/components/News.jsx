@@ -1,8 +1,7 @@
 "use client"
 
-import { useState } from "react"
-// Import the CSS directly in the component
-import '../css/News.css'
+import { useState, useEffect } from "react"
+import "../css/News.css"
 
 const News = () => {
   // news posts data
@@ -10,7 +9,8 @@ const News = () => {
     {
       id: 1,
       title: "6666 Angel Number Meaning: Love, Twin Flame & Career",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 567,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -21,7 +21,8 @@ const News = () => {
     {
       id: 2,
       title: "Saturn in 10th House: Path to Career Success and Recognition",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 654,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -31,7 +32,8 @@ const News = () => {
     {
       id: 3,
       title: "Mars in 7th House: Guide to Love, Marriage & Relationships",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 876,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -41,7 +43,8 @@ const News = () => {
     {
       id: 4,
       title: "Venus in 8th House: Transformation in Love & Finance",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 432,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -51,7 +54,8 @@ const News = () => {
     {
       id: 5,
       title: "Mercury in 3rd House: Communication & Intellectual Gifts",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 789,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -61,7 +65,8 @@ const News = () => {
     {
       id: 6,
       title: "Jupiter in 5th House: Luck, Creativity & Children",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 621,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -71,7 +76,8 @@ const News = () => {
     {
       id: 7,
       title: "Pluto in 12th House: Transformation & Hidden Power",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 543,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -81,7 +87,8 @@ const News = () => {
     {
       id: 8,
       title: "Neptune in 9th House: Spirituality & Higher Learning",
-      image: "https://placeholder.pics/svg/400x300",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2e35d3ae-ed67-41d2-a808-2b8d1b3cbb03-9xQd0j5pOMhmASa4WBH5WGlvlESkH6.png",
       views: 487,
       author: "Nabangi",
       date: "June 11, 2025",
@@ -90,9 +97,30 @@ const News = () => {
     },
   ]
 
-  // State for current page
+  // State for current page and cards per page
   const [currentPage, setCurrentPage] = useState(0)
-  const cardsPerPage = 4
+  const [cardsPerPage, setCardsPerPage] = useState(4)
+
+  // Update cards per page based on screen size
+  useEffect(() => {
+    const updateCardsPerPage = () => {
+      if (window.innerWidth <= 480) {
+        setCardsPerPage(1) // Mobile: 1 card
+      } else if (window.innerWidth <= 768) {
+        setCardsPerPage(2) // Tablet: 2 cards
+      } else if (window.innerWidth <= 1024) {
+        setCardsPerPage(3) // Small desktop: 3 cards
+      } else {
+        setCardsPerPage(4) // Large desktop: 4 cards
+      }
+      setCurrentPage(0) // Reset to first page when screen size changes
+    }
+
+    updateCardsPerPage()
+    window.addEventListener("resize", updateCardsPerPage)
+    return () => window.removeEventListener("resize", updateCardsPerPage)
+  }, [])
+
   const totalPages = Math.ceil(newsPosts.length / cardsPerPage)
 
   // Navigation handlers
@@ -114,7 +142,7 @@ const News = () => {
     <div className="news-section">
       <div className="container">
         <div className="news-header">
-          <h2>AstroTalk in News</h2>
+          <h2>AstroTalk in AP</h2>
         </div>
 
         <div className="news-carousel-container">
@@ -135,7 +163,7 @@ const News = () => {
             </svg>
           </button>
 
-          {/* news Cards */}
+          {/* News Cards */}
           <div className="news-carousel">
             <div className="news-cards-wrapper">
               {getCurrentPosts().map((post) => (
