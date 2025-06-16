@@ -80,11 +80,12 @@
 .logo-container {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 70px;
   margin-right: 8px;
 }
 

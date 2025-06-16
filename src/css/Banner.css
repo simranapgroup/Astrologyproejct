@@ -5,6 +5,7 @@
 .hero-section {
   position: relative;
   width: 100%;
+  margin-bottom: 20px;
   overflow: hidden;
   background: linear-gradient(135deg, #ff7b3a 0%, #ff9a5a 30%, #ffb87a 60%, #ff8c4a 100%);
   background-image: url("../Images/bg1.jpg");
@@ -50,7 +51,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 30px;
-  min-height: 100vh;
+  min-height: 115vh;
   align-items: center;
 }
 
@@ -240,7 +241,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 140%;
+  width: 127%;
   height: 140%;
   z-index: 1;
   animation: spin 6s infinite linear;
@@ -274,7 +275,7 @@
 }
 
 .person-img {
-  height: 115%;
+  height: 110%;
   width: auto;
   object-fit: contain;
 }
