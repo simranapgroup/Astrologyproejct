@@ -12,6 +12,7 @@ import Blog from "./Blog";
 import News from "./News";
 import CommunicationButtons from "./Communicationbutton";
 import Footer from "./Footer";
+import HoroscopeSection from "./Horoscope";
 
 
 
@@ -21,7 +22,7 @@ const Hero = () => {
       <Navbar /> 
       <Banner/>
   <CommunicationButtons/> 
-   
+
    {/* <SecondSection/>  */}
 {/* <Services/> */}
 <Blog/>

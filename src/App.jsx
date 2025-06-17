@@ -8,6 +8,8 @@ import Blog from "./components/Blog";
 import News from "./components/News";
 import CommunicationButtons from "./components/Communicationbutton";
 import Footer from "./components/Footer";
+import HoroscopeSection from "./components/Horoscope";
+// import HoroscopeSection from "./components/Horoscope";
 
 
 function App() {
@@ -21,8 +23,8 @@ function App() {
                     <Route path="/blog" element={<Blog/>} />
                       <Route path="/news" element={<News/>} />
                          <Route path="/buttons" element={<CommunicationButtons/>} />
-                         <Route path="/footer" element={<Footer/>} />
-         
+                          <Route path="/footer" element={<Footer/>} />
+                          <Route path="/horoscope" element={<HoroscopeSection/>} />
     </Routes>
   );
 }

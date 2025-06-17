@@ -1,13 +1,15 @@
 .second-section {
   padding: 50px 0;
   background-color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: 'Philosopher', sans-serif;
+    margin-top: 150px;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
+
 }
 
 .main-heading {
@@ -24,9 +26,11 @@
   line-height: 1.6;
   color: #555;
   font-size: 16px;
+  
+
 }
 
-.services-container {
+.serv-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -52,6 +56,8 @@
   font-size: 32px;
   color: #2e6b45;
   margin-bottom: 20px;
+  text-align: left;
+
 }
 
 .services-description {
@@ -80,23 +86,204 @@
   background-color: #e78d4b;
   border-radius: 50%;
 }
+.services-heading {
+  font-size: 2.5rem;             
+  font-weight: 700;          
+  text-align: left;            
+  color: #2e6b45;                
+  margin-bottom: 30px;           
+  position: relative;           
+ 
+  letter-spacing: 1px;           
+}
 
+
+.services-heading::after {
+  content: '';
+  display: block;
+   text-align: left;               
+  width: 60px;
+  height: 4px;
+  background-color: #f39c12;  
+  margin: 10px 0 0;               
+  border-radius: 2px;
+}
+
+
+/* Mobile-only styles for Second Section */
 @media (max-width: 768px) {
-  .services-container {
-    flex-direction: column;
+  .second-section {
+    padding: 30px 0;
+    margin-top: 80px; /* Reduced from 150px for mobile */
   }
 
-  .services-content {
-    border-left: none;
-    padding-left: 0;
-    margin-top: 30px;
+  .container {
+    padding: 0 20px; /* Increased padding for better mobile spacing */
   }
 
   .main-heading {
-    font-size: 28px;
+    font-size: 24px; /* Smaller font for mobile */
+    line-height: 1.3;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+
+  .about-text {
+    margin-bottom: 40px;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 0 5px;
+  }
+
+  .serv-container {
+    flex-direction: column;
+    gap: 25px;
+    align-items: stretch;
+  }
+
+  .image-container {
+    order: 1; /* Image first on mobile */
+    width: 100%;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .services-content {
+    order: 2; /* Content second on mobile */
+    border-left: none;
+    border-top: 3px solid #e78d4b;
+    padding-left: 0;
+    padding-top: 25px;
+    margin-top: 0;
   }
 
   .services-heading {
-    font-size: 26px;
+    font-size: 22px; /* Smaller heading for mobile */
+    text-align: center; /* Center align on mobile */
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .services-heading::after {
+    margin: 10px auto 0; /* Center the underline on mobile */
+    width: 50px;
+    height: 3px;
+  }
+
+  .services-description {
+    font-size: 15px;
+    text-align: center; /* Center align description on mobile */
+    margin-bottom: 20px;
+  }
+
+  .services-list {
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+    max-width: 300px;
+    
+    margin: 0 auto; /* Center the list */
+  }
+
+  .services-list li {
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid #e78d4b;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .services-list li::before {
+    display: none; /* Remove custom bullets, using border instead */
   }
 }
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .second-section {
+    padding: 25px 0;
+    /* margin-top: 60px; */
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .main-heading {
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 61px;
+  }
+
+  .about-text {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .services-heading {
+    font-size: 20px;
+  }
+
+  .services-description {
+    font-size: 14px;
+  }
+
+  .services-list li {
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .second-section {
+    margin-top: 60px;
+    padding: 25px 0;
+  }
+
+  .serv-container {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .image-container {
+    flex: 0.4;
+  }
+
+  .services-content {
+    flex: 0.6;
+    border-left: 3px solid #e78d4b;
+    border-top: none;
+    padding-left: 20px;
+    padding-top: 0;
+  }
+
+  .services-heading {
+    text-align: left;
+    font-size: 20px;
+  }
+
+  .services-heading::after {
+    margin: 10px 0 0;
+  }
+
+  .services-description {
+    text-align: left;
+  }
+
+  .services-list {
+    margin: 0;
+    max-width: none;
+  
+  }
+}
+
