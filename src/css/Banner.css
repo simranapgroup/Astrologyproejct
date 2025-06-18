@@ -67,7 +67,7 @@
   justify-content: center;
 }
 
-.slider-container {
+.slider-container1 {
   position: relative;
   height: 400px;
   width: 100%;
@@ -89,7 +89,7 @@
   pointer-events: all;
 }
 
-.slide-content {
+.slide-content1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -224,11 +224,11 @@
   position: relative;
   display: grid;
   grid-template-areas: "image";
-  place-items: center;
-  height: 80%;
+  /* place-items: center; */
+  height: 70%;
 }
 
-.spinning-circle-container {
+.spinning-circle-container11 {
   position: relative;
   width: 400px;
   height: 400px;
@@ -236,10 +236,10 @@
   margin: 20px auto;
 }
 
-.spinning-service {
+.spinning-service11 {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  /* top: 50%; */
+  left: -12%;
   transform: translate(-50%, -50%);
   width: 127%;
   height: 140%;
@@ -324,7 +324,7 @@
     min-height: 110px;
   }
 
-  .spinning-circle-container {
+  .spinning-circle-container11 {
     width: 400px;
     height: 400px;
   }
@@ -374,7 +374,7 @@
     margin-bottom: 30px;
   }
 
-  .spinning-circle-container {
+  .spinning-circle-container11 {
     width: 350px;
     height: 350px;
     position: relative;
@@ -397,7 +397,7 @@
     object-fit: contain;
   }
 
-  .spinning-service {
+  .spinning-service11 {
     width: 135%;
     height: 145%;
     position: absolute;
@@ -426,7 +426,7 @@
     height: 400px;
   }
 
-  .spinning-circle-container {
+  .spinning-circle-container11 {
     width: 300px;
     height: 300px;
   }
@@ -465,7 +465,7 @@
     object-fit: contain;
   }
 
-  .spinning-service {
+  .spinning-service11 {
     width: 130%;
     height: 140%;
     top: 50%;
@@ -485,7 +485,7 @@
 }
 
 @media (max-width: 480px) {
-  .spinning-circle-container {
+  .spinning-circle-container11 {
     width: 260px;
     height: 260px;
   }
@@ -506,7 +506,7 @@
     object-fit: contain;
   }
 
-  .spinning-service {
+  .spinning-service11 {
     width: 125%;
     height: 130%;
     top: 50%;

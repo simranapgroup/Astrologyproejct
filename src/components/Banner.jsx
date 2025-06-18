@@ -54,10 +54,10 @@ export default function HeroBanner() {
         <div className="grid-row">
           {/* Left side - Text content (6 columns) */}
           <div className="grid-col-6 text-content">
-            <div className="slider-container">
+            <div className="slider-container1">
               {slides.map((slide, index) => (
                 <div key={index} className={`slide ${index === currentSlide ? "active" : ""}`}>
-                  <div className="slide-content">
+                  <div className="slide-content1">
                     <p className="subtitle">{slide.subtitle}</p>
                     <h1 className="title">{slide.title}</h1>
                     <p className="description">{slide.description}</p>
@@ -92,9 +92,9 @@ export default function HeroBanner() {
 
           {/* Right side - Image with spinning circle (6 columns) */}
           <div className="grid-col-6 image-grid">
-            <div className="spinning-circle-container">
+            <div className="spinning-circle-container11">
               {/* Spinning service image - YE GHUMEGA! */}
-              <div className="spinning-service">
+              <div className="spinning-service11">
                 <img src={service || "/placeholder.svg"} alt="Astrology Services" className="service-img" />
               </div>
 
