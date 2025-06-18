@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { User, LogOut, Settings, ChevronDown, X } from "lucide-react"
 import "../css/Navbar.css"
 import flogo from "../Images/flogo.png"
+import { NavLink } from "react-router-dom"
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -65,11 +67,18 @@ const Navbar = () => {
                 </button>
 
            
-                <a href="/" className="nav-item active" onClick={closeMobileMenu}>
-                  Home
-                </a>
+             <NavLink
+  to="/"
+  className={({ isActive }) =>
+    `nav-item${isActive ? " active-link" : ""}`
+  }
+  onClick={closeMobileMenu}
+>
+  Home
+</NavLink>
 
-                {/* Services with Dropdown */}
+
+                
                 <div className="dropdown">
                   <a
                     href="#"
@@ -120,12 +129,27 @@ const Navbar = () => {
                 </div>
 
                 {/* About Us */}
-                <a href="/second" className="nav-item" onClick={closeMobileMenu}>
-                  About Us
-                </a>
-                <a href="/horoscope" className="nav-item" onClick={closeMobileMenu}>
-                  Horoscope
-                </a>
+           <NavLink
+  to="/second"
+  className={({ isActive }) =>
+    `nav-item${isActive ? " active-link" : ""}`
+  }
+  onClick={closeMobileMenu}
+>
+  About Us
+</NavLink>
+
+<NavLink
+  to="/horoscope"
+  className={({ isActive }) =>
+    `nav-item${isActive ? " active-link" : ""}`
+  }
+  onClick={closeMobileMenu}
+>
+  Horoscope
+</NavLink>
+
+               
 
                 {/* Authentication Section */}
                 {isLoggedIn ? (

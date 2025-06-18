@@ -62,6 +62,22 @@
 .nav-item:hover {
   color: #f0a830;
 }
+.nav-item {
+  /* color: white; */
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #f0a830;
+  /* text-decoration: underline; */
+}
+
+.active-link {
+  color: #f0a830;
+  /* text-decoration: underline; */
+}
 
 .nav-item:hover::after {
   content: "";

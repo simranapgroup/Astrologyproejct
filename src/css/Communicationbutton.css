@@ -163,8 +163,7 @@
 .service-title {
   font-size: 16px;
   font-weight: 600;
-   font-family: 'Lato', sans-serif;
-
+  font-family: "Lato", sans-serif;
   text-align: center;
   color: #374151;
 }
@@ -175,7 +174,7 @@
   font-weight: 700;
   margin-bottom: 3rem;
   margin-top: 50px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   background: linear-gradient(135deg, #f2f2f2, #f59e0b, #f97316);
   background-clip: text;
   -webkit-background-clip: text;
@@ -200,6 +199,27 @@
   background: linear-gradient(135deg, #16a34a, #15803d);
 }
 
+/* Mobile-specific layout styles */
+.services-wrapper-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.mobile-card {
+  flex: 1;
+  max-width: calc(50% - 6px);
+  min-width: calc(50% - 6px);
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .services-wrapper {
@@ -216,13 +236,13 @@
     padding: 40px 12px;
   }
 
-  .services-wrapper {
-    gap: 12px;
-    padding: 0 8px;
+  .mobile-row {
+    gap: 8px;
   }
 
-  .service-card {
-    min-width: 180px;
+  .mobile-card {
+    max-width: calc(50% - 4px);
+    min-width: calc(50% - 4px);
     padding: 20px;
   }
 
@@ -245,12 +265,13 @@
     padding: 30px 8px;
   }
 
-  .services-wrapper {
-    gap: 8px;
+  .mobile-row {
+    gap: 6px;
   }
 
-  .service-card {
-    min-width: 160px;
+  .mobile-card {
+    max-width: calc(50% - 3px);
+    min-width: calc(50% - 3px);
     padding: 16px;
   }
 
@@ -268,7 +289,7 @@
 
   .icon {
     height: 28px;
-    width: 28px;
+    width: 32px;
   }
 
   .star {

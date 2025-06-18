@@ -9,6 +9,7 @@ import News from "./components/News";
 import CommunicationButtons from "./components/Communicationbutton";
 import Footer from "./components/Footer";
 import HoroscopeSection from "./components/Horoscope";
+import ExperienceSection from "./components/Experience";
 // import HoroscopeSection from "./components/Horoscope";
 
 
@@ -25,6 +26,7 @@ function App() {
                          <Route path="/buttons" element={<CommunicationButtons/>} />
                           <Route path="/footer" element={<Footer/>} />
                           <Route path="/horoscope" element={<HoroscopeSection/>} />
+                                                    <Route path="/experience" element={<ExperienceSection/>} />
     </Routes>
   );
 }

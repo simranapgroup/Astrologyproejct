@@ -1,6 +1,7 @@
 import "../css/second.css"
 // Import mobile-specific styles
 import aboutImage from "../Images/about.png"
+import ExperienceSection from "./Experience"
 import Footer from "./Footer"
 import Navbar from "./Navbar"
 
@@ -45,6 +46,7 @@ const SecondSection = () => {
           </div>
         </div>
       </section>
+      <ExperienceSection/>
       <Footer />
     </>
   )

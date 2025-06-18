@@ -41,10 +41,11 @@ const Footer = () => {
                 </p>
               </div>
 
-              <div className="contact-item">
-                <FaPhone className="icon" />
-                <p>+91-9289109203</p>
-              </div>
+            <div className="contact-item">
+  <FaPhone className="icon" />
+  <p>+91-9289109203</p>
+</div>
+
 
               <div className="contact-item">
                 <FaPhone className="icon" />
