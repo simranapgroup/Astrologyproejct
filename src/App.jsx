@@ -11,7 +11,9 @@ import Footer from "./components/Footer";
 import HoroscopeSection from "./components/Horoscope";
 import ExperienceSection from "./components/Experience";
 import Foundation from "./components/Foundation";
-import Signup from "./components/Signup";
+ import Signup from "./components/Signup";
+import Login from "./components/Login";
+import Chat from "./components/Chat";
 // import HoroscopeSection from "./components/Horoscope";
 
 
@@ -30,7 +32,10 @@ function App() {
                           <Route path="/horoscope" element={<HoroscopeSection/>} />
                                                     <Route path="/experience" element={<ExperienceSection/>} />
                                                  <Route path="/foundation" element={<Foundation/>} />
-                                                   <Route path="/signup" element={<Signup/>} />
+                                                    <Route path="/signup" element={<Signup/>} />
+                                                     <Route path="/login" element={<Login/>} />
+                                                       <Route path="/chat" element={<Chat/>} />
+                                               
     </Routes>
   );
 }

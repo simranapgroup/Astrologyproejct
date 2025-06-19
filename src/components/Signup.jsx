@@ -1,65 +1,106 @@
-"use client"
+import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { registerUser } from "../assets/signup";
 
-import { useState } from "react"
-import { Formik, Form, Field, ErrorMessage } from "formik"
-import * as Yup from "yup"
-import { registerUser } from "../assets/signup"
-import '../css/Signup.css'
 
 const validationSchema = Yup.object({
-  fullName: Yup.string().min(2, "Name must be at least 2 characters").required("Full name is required"),
+  fullName: Yup.string()
+    .min(2, "Name must be at least 2 characters")
+    .required("Full name is required"),
   phone: Yup.string()
     .matches(/^\d{10}$/, "Phone number must be 10 digits")
     .required("Phone number is required"),
-  email: Yup.string().email("Invalid email address").required("Email is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Password must contain uppercase, lowercase and number")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Must include uppercase, lowercase, and number")
     .required("Password is required"),
-//   address: Yup.string().min(10, "Address must be at least 10 characters").required("Address is required"),
-})
+  address: Yup.string(),
+});
 
 const Signup = () => {
-  const [message, setMessage] = useState("")
-  const [messageType, setMessageType] = useState("")
-
- 
   const initialValues = {
     fullName: "",
     phone: "",
     email: "",
     password: "",
-    // address: "",
-  }
+    address: "",
+  };
+
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+    const [showOTPInput, setShowOTPInput] = useState(false);
+const [otp, setOTP] = useState("");
+const [userPhone, setUserPhone] = useState("");
+const [isVerifying, setIsVerifying] = useState(false);
 
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      setMessage("")
-      setMessageType("")
+      const trimmedValues = {
+        fullName: values.fullName.trim(),
+        phone: values.phone.trim(),
+        email: values.email.trim(),
+        password: values.password.trim(),
+        address: values.address.trim(),
+      };
 
-      const response = await registerUser(values)
+      setMessage("");
+      setMessageType("");
 
-      if (response.success) {
-        setMessage("Registration successful! Welcome aboard!")
-        setMessageType("success")
-        resetForm()
+      const response = await registerUser(trimmedValues);
+      console.log("API response:", response);
+
+      if (response?.success || response?.message?.toLowerCase().includes("success")) {
+        setMessage("Registration successful!");
+        setMessageType("success");
+        setUserPhone(values.phone);
+        setShowOTPInput(true);
+
+        resetForm();
       } else {
-        setMessage(response.message || "Registration failed. Please try again.")
-        setMessageType("error")
+        setMessage(response?.message || "Registration failed.");
+        setMessageType("error");
       }
     } catch (error) {
-      setMessage("Network error. Please check your connection and try again.")
-      setMessageType("error")
+      setMessage("Network error. Please try again.");
+      setMessageType("error");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
+  };
+ const handleVerifyOtp = async () => {
+  if (!otp || otp.length !== 6) {
+    setMessage("Please enter a valid 6-digit OTP.");
+    setMessageType("error");
+    return;
   }
 
+  setIsVerifying(true);
+
+  try {
+    const result = await verifyOtp({ phone: userPhone, otp });
+    if (result.success) {
+      setMessage("OTP verified successfully! Registration complete.");
+      setMessageType("success");
+      setTimeout(() => navigate("/login"), 1500);
+    } else {
+      setMessage(result.message || "Invalid or expired OTP.");
+      setMessageType("error");
+    }
+  } catch (error) {
+    setMessage("Something went wrong. Please try again later.");
+    setMessageType("error");
+  } finally {
+    setIsVerifying(false);
+  }
+};
   return (
     <div className="signup-container">
       <div className="signup-wrapper">
-       
         <div className="background-image-section">
           <div className="image-overlay-content">
             <div className="welcome-text">
@@ -78,13 +119,11 @@ const Signup = () => {
                   <span className="feature-icon">🎯</span>
                   <span>Easy to Use</span>
                 </div>
-            
               </div>
             </div>
           </div>
         </div>
 
- 
         <div className="form-section">
           <div className="form-container">
             <div className="form-header">
@@ -93,77 +132,83 @@ const Signup = () => {
             </div>
 
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-              {({ isSubmitting, errors, touched }) => (
+              {({ isSubmitting }) => (
                 <Form className="signup-form">
+               
                   <div className="form-group">
                     <label htmlFor="fullName">Full Name</label>
-                    <Field
-                      type="text"
-                      id="fullName"
-                      name="fullName"
-                      placeholder="Enter your full name"
-                      className={errors.fullName && touched.fullName ? "error-field" : ""}
-                    />
+                    <Field type="text" name="fullName" placeholder="Enter your full name" />
                     <ErrorMessage name="fullName" component="div" className="error-message" />
                   </div>
 
+              
                   <div className="form-group">
                     <label htmlFor="phone">Phone Number</label>
-                    <Field
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      placeholder="Enter your phone number"
-                      className={errors.phone && touched.phone ? "error-field" : ""}
-                    />
+                    <Field type="tel" name="phone" placeholder="Enter your phone number" />
                     <ErrorMessage name="phone" component="div" className="error-message" />
                   </div>
 
+                
                   <div className="form-group">
                     <label htmlFor="email">Email Address</label>
-                    <Field
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      className={errors.email && touched.email ? "error-field" : ""}
-                    />
+                    <Field type="email" name="email" placeholder="Enter your email" />
                     <ErrorMessage name="email" component="div" className="error-message" />
                   </div>
 
+                  {/* Password */}
                   <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <Field
-                      type="password"
-                      id="password"
-                      name="password"
-                      placeholder="Enter your password"
-                      className={errors.password && touched.password ? "error-field" : ""}
-                    />
+                    <Field type="password" name="password" placeholder="Enter your password" />
                     <ErrorMessage name="password" component="div" className="error-message" />
                   </div>
 
-                  {/* <div className="form-group">
+                  {/* Address */}
+                  <div className="form-group">
                     <label htmlFor="address">Address</label>
-                    <Field
-                      as="textarea"
-                      id="address"
-                      name="address"
-                      placeholder="Enter your address"
-                      rows="3"
-                      className={errors.address && touched.address ? "error-field" : ""}
-                    />
+                    <Field type="text" name="address" placeholder="Enter your address" />
                     <ErrorMessage name="address" component="div" className="error-message" />
-                  </div> */}
+                  </div>
 
                   <button type="submit" className="submit-btn" disabled={isSubmitting}>
                     {isSubmitting ? "Creating Account..." : "Sign Up"}
                   </button>
 
-                  {/* {message && <div className={`message ${messageType}`}>{message}</div>} */}
+                  {message && (
+                    <div className={`message ${messageType === "success" ? "success-message" : "error-message"}`}>
+                      {message}
+                    </div>
+                  )}
                 </Form>
               )}
             </Formik>
+{showOTPInput && (
+              <div className="otp-section">
+                <h3>Enter OTP sent to your phone</h3>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  value={otp}
+                  onChange={(e) => setOTP(e.target.value)}
+                  className="otp-input"
+                  maxLength={6}
+                />
+
+                {message && (
+                  <div className={`message ${messageType === "success" ? "success-message" : "error-message"}`}>
+                    {message}
+                  </div>
+                )}
+
+             <button
+  type="button"
+  className="submit-btn"
+  onClick={handleVerifyOtp}
+  disabled={!otp || otp.length !== 6 || isVerifying}
+>
+  {isVerifying ? "Verifying..." : "Verify OTP"}
+</button>
+              </div>
+            )}
 
             <div className="form-footer">
               <p>
@@ -174,7 +219,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

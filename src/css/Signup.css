@@ -6,7 +6,6 @@
 
 .signup-container {
   min-height: 100vh;
-  /* background: linear-gradient(135deg, #2d5016 0%, #ff8c00 50%, #ffd700 100%); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +23,6 @@
   overflow: hidden;
   min-height: 650px;
 }
-
 
 .background-image-section {
   flex: 1;
@@ -113,7 +111,6 @@
   font-size: 1.1rem;
   font-weight: 600;
 }
-
 
 .form-section {
   flex: 1;
@@ -259,7 +256,64 @@
   color: #666;
   font-size: 1rem;
 }
+/* Additional styles for OTP form */
+.otp-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: space-between;
+}
 
+.resend-btn,
+.back-btn {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.resend-btn:hover,
+.back-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.info-message {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Style for OTP input */
+input[name="otp"] {
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.otp-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.otp-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
 .form-footer a {
   color: #ff8c00;
   text-decoration: none;
@@ -271,7 +325,6 @@
   color: #2d5016;
   text-decoration: underline;
 }
-
 
 @media (max-width: 768px) {
   .signup-wrapper {
@@ -285,11 +338,11 @@
   }
 
   .welcome-text h2 {
-    font-size: 1rem;
+    font-size: 2.5rem;
   }
 
   .welcome-text p {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .features-list {
@@ -310,7 +363,7 @@
   }
 
   .form-header h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 }
 
@@ -346,10 +399,10 @@
   }
 
   .feature-icon {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .form-header h1 {
-    font-size: 1rem;
+    font-size: 1.8rem;
   }
 }
