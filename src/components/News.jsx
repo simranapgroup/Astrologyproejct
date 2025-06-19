@@ -146,7 +146,7 @@ const News = () => {
         </div>
 
         <div className="news-carousel-container">
-          {/* Left Arrow */}
+
           <button className="carousel-arrow prev-arrow" onClick={handlePrev} aria-label="Previous slide">
             <svg
               xmlns="http://www.w3.org/2000/svg"

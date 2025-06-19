@@ -88,14 +88,15 @@ body {
   }
 }
 
-/* Horoscope Container */
+
 .horoscope-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  margin-top: 192px;
 }
 
-/* Header Section */
+
 .horoscope-header {
   text-align: center;
   margin-bottom: 30px;
@@ -162,7 +163,7 @@ body {
   line-height: 1.6;
 }
 
-/* Zodiac Signs Grid */
+
 .zodiac-signs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

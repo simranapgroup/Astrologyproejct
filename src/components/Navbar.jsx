@@ -5,6 +5,7 @@ import { User, LogOut, Settings, ChevronDown, X } from "lucide-react"
 import "../css/Navbar.css"
 import flogo from "../Images/flogo.png"
 import { NavLink } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -14,7 +15,6 @@ const Navbar = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false)
   const [user, setUser] = useState(null)
 
-  // Simulate checking for authentication token
   useEffect(() => {
     const token = localStorage.getItem("authToken")
     const userData = localStorage.getItem("userData")
@@ -22,17 +22,21 @@ const Navbar = () => {
     if (token && userData) {
       setIsLoggedIn(true)
       setUser(JSON.parse(userData))
+    } else {
+      setIsLoggedIn(false)
     }
-    // For now, always show login/register buttons
-    setIsLoggedIn(false)
   }, [])
 
   const toggleDropdown = (dropdown) => {
-    setActiveDropdown(activeDropdown === dropdown ? "" : dropdown)
+    if (window.innerWidth <= 768) {
+      setActiveDropdown(activeDropdown === dropdown ? "" : dropdown)
+    }
   }
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen)
+    setActiveDropdown("")
+    setShowProfileDropdown(false)
   }
 
   const handleLogout = () => {
@@ -46,7 +50,26 @@ const Navbar = () => {
   const closeMobileMenu = () => {
     setIsOpen(false)
     setActiveDropdown("")
+    setShowProfileDropdown(false)
   }
+
+  const handleProfileClick = () => {
+    setShowProfileDropdown(!showProfileDropdown)
+  }
+
+ const handleLoginOption = (userType) => {
+  console.log(`Login as ${userType}`);
+  
+  setShowProfileDropdown(false);
+  closeMobileMenu();
+
+  if (userType === "User") {
+    navigate("/signup"); 
+  } else if (userType === "Astrologer") {
+    navigate("/astrologer-login"); 
+  }
+};
+
 
   return (
     <nav className="navbar">
@@ -54,31 +77,39 @@ const Navbar = () => {
         <div className="grid-12">
           <div className="grid-12">
             <div className="navbar-content">
-              {/* Logo */}
               <div className="logo">
                 <img src={flogo || "/placeholder.svg"} alt="Astro Logo" />
               </div>
 
-              {/* Navigation Items */}
               <div className={`nav-items ${isOpen ? "active" : ""}`}>
-                {/* Close button for mobile */}
                 <button className="mobile-close-btn" onClick={closeMobileMenu}>
                   <X size={24} />
                 </button>
 
-           
-             <NavLink
-  to="/"
-  className={({ isActive }) =>
-    `nav-item${isActive ? " active-link" : ""}`
-  }
-  onClick={closeMobileMenu}
->
-  Home
-</NavLink>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => `nav-item${isActive ? " active-link" : ""}`}
+                  onClick={closeMobileMenu}
+                >
+                  Home
+                </NavLink>
 
+                <NavLink
+                  to="/second"
+                  className={({ isActive }) => `nav-item${isActive ? " active-link" : ""}`}
+                  onClick={closeMobileMenu}
+                >
+                  About Us
+                </NavLink>
 
-                
+                <NavLink
+                  to="/Foundation"
+                  className={({ isActive }) => `nav-item${isActive ? " active-link" : ""}`}
+                  onClick={closeMobileMenu}
+                >
+                  Free Calculators
+                </NavLink>
+
                 <div className="dropdown">
                   <a
                     href="#"
@@ -92,21 +123,20 @@ const Navbar = () => {
                   </a>
                   <div className={`dropdown-content ${activeDropdown === "services" ? "mobile-active" : ""}`}>
                     <a href="/video-call" onClick={closeMobileMenu}>
-                       Chat
+                      Chat
                     </a>
                     <a href="/Chat" onClick={closeMobileMenu}>
-                     Video Call
+                      Video Call
                     </a>
                     <a href="/audio-call" onClick={closeMobileMenu}>
                       Audio Call
                     </a>
-                        <a href="/E-Pooja" onClick={closeMobileMenu}>
+                    <a href="/E-Pooja" onClick={closeMobileMenu}>
                       E-Pooja
                     </a>
                   </div>
                 </div>
 
-              
                 <div className="dropdown">
                   <a
                     href="#"
@@ -128,34 +158,19 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                {/* About Us */}
-           <NavLink
-  to="/second"
-  className={({ isActive }) =>
-    `nav-item${isActive ? " active-link" : ""}`
-  }
-  onClick={closeMobileMenu}
->
-  About Us
-</NavLink>
+                <NavLink
+                  to="/horoscope"
+                  className={({ isActive }) => `nav-item${isActive ? " active-link" : ""}`}
+                  onClick={closeMobileMenu}
+                >
+                  Horoscope
+                </NavLink>
 
-<NavLink
-  to="/horoscope"
-  className={({ isActive }) =>
-    `nav-item${isActive ? " active-link" : ""}`
-  }
-  onClick={closeMobileMenu}
->
-  Horoscope
-</NavLink>
-
-               
-
-                {/* Authentication Section */}
-                {isLoggedIn ? (
-                  <div className="profile-section">
+                {/* Profile Section - Always visible */}
+                <div className="profile-section">
+                  {isLoggedIn ? (
                     <div className="profile-dropdown">
-                      <button className="profile-btn" onClick={() => setShowProfileDropdown(!showProfileDropdown)}>
+                      <button className="profile-btn" onClick={handleProfileClick}>
                         <div className="profile-avatar">
                           <User size={20} />
                         </div>
@@ -184,20 +199,35 @@ const Navbar = () => {
                         </button>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="auth-buttons">
-                    <a href="/login" className="login-btn" onClick={closeMobileMenu}>
-                      Login
-                    </a>
-                    <a href="/register" className="register-btn" onClick={closeMobileMenu}>
-                      Register
-                    </a>
-                  </div>
-                )}
+                  ) : (
+                    <div className="profile-dropdown">
+                      <button className="profile-btn profile-login-btn" onClick={handleProfileClick}>
+                        <div className="profile-avatar">
+                          <User size={20} />
+                        </div>
+                        <ChevronDown size={16} className={`profile-arrow ${showProfileDropdown ? "rotated" : ""}`} />
+                      </button>
+
+                      <div className={`profile-dropdown-content login-dropdown ${showProfileDropdown ? "active" : ""}`}>
+                        <div className="login-options">
+                          <button className="login-option-btn user-login" onClick={() => handleLoginOption("User")}>
+                            <User size={16} />
+                            Login as User
+                          </button>
+                          <button
+                            className="login-option-btn astrologer-login"
+                            onClick={() => handleLoginOption("Astrologer")}
+                          >
+                            <Settings size={16} />
+                            Login as Astrologer
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
 
-              {/* Hamburger Menu */}
               <div className={`hamburger ${isOpen ? "active" : ""}`} onClick={toggleMobileMenu}>
                 <span className="bar"></span>
                 <span className="bar"></span>
@@ -208,7 +238,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
       {isOpen && <div className="mobile-overlay" onClick={closeMobileMenu}></div>}
     </nav>
   )

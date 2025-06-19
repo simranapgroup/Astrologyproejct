@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import '../css/horoscope.css'
 import { getZodiacEmoji, handleHoroscopeError, fetchHoroscopeWithRetry } from '../assets/horoscope.js'
+import Footer from "./Footer.jsx"
+import Navbar from "./Navbar.jsx"
 
 export default function HoroscopePage() {
   const [signs] = useState([
@@ -147,7 +149,7 @@ export default function HoroscopePage() {
 
   return (
     <>
-    
+    <Navbar/>
     <div className="astro-main-wrapper">
      
       {isLoading && (
@@ -266,6 +268,7 @@ export default function HoroscopePage() {
         </div>
       )}
     </div>
+    <Footer/>
     </>
   )
 }
