@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { loginuser, registerUser } from "../assets/signup";
-import '../css/signup.css'
+import { loginuser,} from "../assets/signup";
+import '../css/Signup.css'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -32,41 +32,49 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
 
- const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+const handleSubmit = async (values, { setSubmitting, resetForm }) => {
   try {
     const trimmedValues = {
-    
       phone: values.phone.trim(),
       password: values.password.trim(),
-    
     };
 
     setMessage("");
     setMessageType("");
 
     const response = await loginuser(trimmedValues);
-    console.log("API response:", response);
 
-    if (response?.success || response?.message?.toLowerCase().includes("success")) {
-      setMessage("login successful!");
+    console.log("🚀 Full login API response:", response);
+
+  
+    const token = response?.token || response?.data?.token;
+
+    if (response?.success && token) {
+      localStorage.setItem("token", token);
+      console.log("✅ Token saved to localStorage:", token);
+
+      setMessage("Login successful!");
       setMessageType("success");
       resetForm();
 
-     
       setTimeout(() => {
-        navigate('/chat');
+        navigate("/profile");
       }, 1500);
     } else {
-      setMessage(response?.message || "Registration failed.");
+      setMessage(response?.message || "Login failed.");
       setMessageType("error");
     }
   } catch (error) {
+    console.error("❌ Network/login error:", error);
     setMessage("Network error. Please try again.");
     setMessageType("error");
   } finally {
     setSubmitting(false);
   }
 };
+
+
+
 
 
   return (
@@ -105,10 +113,10 @@ const Login = () => {
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
               {({ isSubmitting }) => (
                 <Form className="signup-form">
-                  {/* Full Name */}
+                 
               
 
-                  {/* Phone Number */}
+                 
                   <div className="form-group">
                     <label htmlFor="phone">Phone Number</label>
                     <Field type="tel" name="phone" placeholder="Enter your phone number" />

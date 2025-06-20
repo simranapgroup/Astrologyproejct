@@ -14,6 +14,7 @@ import Foundation from "./components/Foundation";
  import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Chat from "./components/Chat";
+import Profile from "./components/Profile";
 // import HoroscopeSection from "./components/Horoscope";
 
 
@@ -35,6 +36,7 @@ function App() {
                                                     <Route path="/signup" element={<Signup/>} />
                                                      <Route path="/login" element={<Login/>} />
                                                        <Route path="/chat" element={<Chat/>} />
+                                                        <Route path="/profile" element={<Profile/>} />
                                                
     </Routes>
   );

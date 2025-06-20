@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { registerUser } from "../assets/signup";
+import { registerUser, resendOTP } from "../assets/signup";
+import { verifyOTP, } from "../assets/signup";
 
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object({
   fullName: Yup.string()
@@ -22,6 +24,7 @@ const validationSchema = Yup.object({
 });
 
 const Signup = () => {
+  const navigate = useNavigate();
   const initialValues = {
     fullName: "",
     phone: "",
@@ -31,6 +34,7 @@ const Signup = () => {
   };
 
   const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false); 
   const [messageType, setMessageType] = useState("");
     const [showOTPInput, setShowOTPInput] = useState(false);
 const [otp, setOTP] = useState("");
@@ -82,7 +86,7 @@ const [isVerifying, setIsVerifying] = useState(false);
   setIsVerifying(true);
 
   try {
-    const result = await verifyOtp({ phone: userPhone, otp });
+    const result = await verifyOTP({ phone: userPhone, otp });
     if (result.success) {
       setMessage("OTP verified successfully! Registration complete.");
       setMessageType("success");
@@ -96,6 +100,31 @@ const [isVerifying, setIsVerifying] = useState(false);
     setMessageType("error");
   } finally {
     setIsVerifying(false);
+  }
+};
+const resendOtp = async () => {
+  if (loading) return;
+
+  setLoading(true);
+  setMessage("Sending new OTP...");
+  setMessageType("info");
+
+  try {
+    const result = await resendOTP({ phone: userPhone });
+    console.log("result hii-----", result);
+
+    if (result?.success) {
+      setMessage("New OTP has been sent to your phone.");
+      setMessageType("success");
+    } else {
+      setMessage(result?.message || "Failed to resend OTP.");
+      setMessageType("error");
+    }
+  } catch (error) {
+    setMessage(error.response?.data?.message || "Something went wrong. Please try again.");
+    setMessageType("error");
+  } finally {
+    setLoading(false);
   }
 };
   return (
@@ -155,14 +184,14 @@ const [isVerifying, setIsVerifying] = useState(false);
                     <ErrorMessage name="email" component="div" className="error-message" />
                   </div>
 
-                  {/* Password */}
+               
                   <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <Field type="password" name="password" placeholder="Enter your password" />
                     <ErrorMessage name="password" component="div" className="error-message" />
                   </div>
 
-                  {/* Address */}
+                
                   <div className="form-group">
                     <label htmlFor="address">Address</label>
                     <Field type="text" name="address" placeholder="Enter your address" />
@@ -207,6 +236,14 @@ const [isVerifying, setIsVerifying] = useState(false);
 >
   {isVerifying ? "Verifying..." : "Verify OTP"}
 </button>
+    <button
+      type="button"
+      className="resend-btn"
+      onClick={resendOtp}
+      style={{ marginTop: "10px" }}
+    >
+      Resend OTP
+    </button>
               </div>
             )}
 
