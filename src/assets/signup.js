@@ -1,5 +1,5 @@
 import axios from "axios";
-import { data } from "react-router-dom";
+
 export const registerUser = async (userData) => {
 
   try {
@@ -172,7 +172,7 @@ export const getProfile = async () => {
       throw new Error("No authentication token found");
     }
 
-    console.log("📡 Sending profile API request...");
+    console.log("Sending profile API request...");
 
     const response = await axios.get("http://localhost:3000/api/auth/profile", {
       headers: {
@@ -180,10 +180,45 @@ export const getProfile = async () => {
       },
     });
 
-    console.log("✅ Profile API response:", response.data); // Log result
+    console.log("Profile API response:", response.data); 
     return response.data;
   } catch (error) {
-    console.error("❌ Error fetching profile:", error);
+    console.error(" Error fetching profile:", error);
+    return {
+      success: false,
+      message: error.response?.data?.message || error.message || "Something went wrong",
+    };
+  }
+};
+export const updateProfile = async (editedData) => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log("tokendbbsb",token)
+
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
+
+    const response = await axios.put(
+      "http://localhost:3000/api/auth/user/profile", 
+      editedData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const result = response.data;
+
+    return {
+      success: true,
+      message: result.message || "Profile updated successfully",
+      data: result.user,
+    };
+  } catch (error) {
+    console.error("Error saving profile:", error);
     return {
       success: false,
       message: error.response?.data?.message || error.message || "Something went wrong",
@@ -193,3 +228,200 @@ export const getProfile = async () => {
 
 
 
+
+export const getAllAstrologers = async () => {
+  try {
+     const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No authentication token found")
+    }
+
+    console.log("Fetching all astrologers...")
+
+    const response = await axios.get("http://localhost:3000/api/admin/astrologers", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+
+    console.log("All astrologers response:", response.data)
+
+    return {
+      success: true,
+      data: response.data.astrologers || response.data || [],
+    }
+  } catch (error) {
+    console.error("Failed to fetch astrologers:", error)
+    return {
+      success: false,
+      message: error.response?.data?.message || "Failed to fetch astrologers",
+      data: [],
+    }
+  }
+}
+
+export const joinLiveStream = async (channelName) => {
+  try {
+      const token = localStorage.getItem("token");
+    // const userId = getUserId()
+
+    if (!token) {
+      throw new Error("No authentication token found")
+    }
+
+    console.log("Joining live stream:", channelName)
+
+    const response = await axios.post(
+      "http://localhost:3000/apilive-stream/user/live/join",
+      { channelName },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    )
+
+    console.log("Join live stream response:", response.data)
+
+    return {
+      success: true,
+      data: response.data,
+    }
+  } catch (error) {
+    console.error("Failed to join live stream:", error)
+    return {
+      success: false,
+      message: error.response?.data?.message || "Failed to join live stream",
+    }
+  }
+}
+
+export const sendTip = async (channelName, amount) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No authentication token found")
+    }
+
+    console.log("Sending tip:", { channelName, amount })
+
+    const response = await axios.post(
+      "http://localhost:3000/api/live-stream/user/tip",
+      { channelName, amount },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    )
+
+    console.log("Send tip response:", response.data)
+
+    return {
+      success: true,
+      data: response.data,
+    }
+  } catch (error) {
+    console.error("Failed to send tip:", error)
+    return {
+      success: false,
+      message: error.response?.data?.message || "Failed to send tip",
+    }
+  }
+}
+
+
+export const getAstrologerById = async (astrologerId) => {
+  try {
+       const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No authentication token found")
+    }
+
+    const response = await axios.get("http://localhost:3000/apiastrologers/${astrologerId}", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+
+    return {
+      success: true,
+      data: response.data.astrologer || response.data,
+    }
+  } catch (error) {
+    console.error("Failed to fetch astrologer details:", error)
+    return {
+      success: false,
+      message: error.response?.data?.message || "Failed to fetch astrologer details",
+    }
+  }
+}
+
+
+export const startCall = async (astrologerId) => {
+  try {
+       const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No authentication token found")
+    }
+
+    const response = await axios.post(
+      "http://localhost:3000/api/calls/start",
+      { astrologerId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    )
+
+    return {
+      success: true,
+      data: response.data,
+    }
+  } catch (error) {
+    console.error("Failed to start call:", error)
+    return {
+      success: false,
+      message: error.response?.data?.message || "Failed to start call",
+    }
+  }
+}
+
+
+export const getWalletBalance = async () => {
+  try {
+        const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No authentication token found")
+    }
+
+    const response = await axios.get("http://localhost:3000/apiwallet/balance", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+
+    return {
+      success: true,
+      data: response.data,
+    }
+  } catch (error) {
+    console.error("Failed to fetch wallet balance:", error)
+    return {
+      success: false,
+      message: error.response?.data?.message || "Failed to fetch wallet balance",
+    }
+  }
+}

@@ -4,6 +4,7 @@
 
   padding: 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e78d4b;
 }
 
 .profile-wrapper {
@@ -109,7 +110,7 @@
 }
 
 /* Badge Styles */
-.badges-container {
+/* .badges-container {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -125,14 +126,14 @@
   display: flex;
   align-items: center;
   gap: 5px;
-}
+} */
 
-.badge-verified {
+/* .badge-verified {
   background: #10b981;
   color: white;
-}
+} */
 
-.badge-unverified {
+/* .badge-unverified {
   background: #6b7280;
   color: white;
 }
@@ -140,12 +141,12 @@
 .badge-active {
   background: #3b82f6;
   color: white;
-}
+} */
 
-.badge-inactive {
+/* .badge-inactive {
   background: #e5e7eb;
   color: #6b7280;
-}
+} */
 
 /* Wallet Styles */
 .wallet-section {
@@ -167,6 +168,17 @@
   color: #065f46;
   font-size: 0.9rem;
 }
+.edit-button-positioned {
+  position: relative;
+  transform: translateX(20px) translateY(10px);
+  margin-top: 15px;
+  /* margin-left: auto; */
+  display: block;
+  background-color: #e78d4b;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+}
 
 .member-since {
   text-align: center;
@@ -175,11 +187,15 @@
   margin-top: 15px;
 }
 
-/* Form Styles */
+.form-actionsb {
+  position: relative;
+  min-height: 60px;
+}
 .form-section {
   background: white;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  justify-content: left;
   overflow: hidden;
 }
 
@@ -207,6 +223,7 @@
 
 .form-content {
   padding: 30px;
+  width: 335px;
 }
 
 .form-grid {
@@ -338,14 +355,14 @@
   gap: 15px;
 }
 
-/* Separator */
+
 .separator {
   height: 1px;
   background: #e5e7eb;
   margin: 25px 0;
 }
 
-/* Account Info */
+
 .account-info {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -375,7 +392,7 @@
   color: #374151;
 }
 
-/* Loading Animation */
+
 .loading {
   display: inline-block;
   width: 16px;
@@ -392,7 +409,7 @@
   }
 }
 
-/* Responsive Design */
+
 @media (max-width: 640px) {
   .profile-container {
     padding: 15px;
@@ -432,7 +449,7 @@
   height: 20px;
 }
 
-/* Hover Effects */
+
 .hover-lift {
   transition: transform 0.3s ease;
 }
@@ -441,7 +458,7 @@
   transform: translateY(-2px);
 }
 
-/* Success/Error Messages */
+
 .message {
   padding: 12px 15px;
   border-radius: 8px;

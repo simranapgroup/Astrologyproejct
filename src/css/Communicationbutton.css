@@ -2,7 +2,7 @@
 
 .services-container {
   width: 100%;
-  padding: 60px 16px;
+  padding: 60px 90px;
   justify-content: center;
   position: relative;
   background: linear-gradient(135deg, #f0fdf4 0%, #fefce8 25%, #fff7ed 50%, #f6ffed 75%, #f0f9ff 100%);
@@ -54,7 +54,15 @@
   animation-delay: 1s;
   color: rgba(245, 158, 11, 0.3);
 }
-
+/* Remove underline from all links inside service cards */
+.service-card a {
+  text-decoration: none;
+  color: inherit; /* Keeps text color unchanged */
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .star-3 {
   bottom: 30%;
   left: 20%;

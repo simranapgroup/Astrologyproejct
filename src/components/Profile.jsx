@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import "../css/Profile.css"
-import { getProfile } from "../assets/signup"
+import { getProfile, updateProfile } from "../assets/signup"
 import axios from "axios"
 export default function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
@@ -40,7 +40,7 @@ useEffect(() => {
         throw new Error(result.message || "Failed to load user data");
       }
     } catch (error) {
-      console.error("❌ Profile fetch error:", error);
+      console.error("Profile fetch error:", error);
       setMessage(
         error.message || "Something went wrong while loading the profile."
       );
@@ -78,36 +78,29 @@ useEffect(() => {
       .toUpperCase()
   }
 
-  // Save changes to the backend
-  const handleSave = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/api/auth/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(editedData),
-      })
 
-      const result = await response.json()
 
-      if (!response.ok) {
-        throw new Error(result.message || "Failed to update profile")
-      }
 
-      // Update userData after successful save
-      setUserData((prev) => ({
-        ...prev,
-        ...editedData,
-      }))
-      setIsEditing(false)
-      setMessage("Profile updated successfully!")
-    } catch (error) {
-      console.error("Error saving profile:", error)
-      setMessage(`Error: ${error.message}`)
+const handleSave = async () => {
+  try {
+    const result = await updateProfile(editedData);
+
+    if (!result.success) {
+      throw new Error(result.message);
     }
+
+    setUserData((prev) => ({
+      ...prev,
+      ...editedData,
+    }));
+    setIsEditing(false);
+    setMessage(result.message || "Profile updated successfully!");
+  } catch (error) {
+    console.error("Error saving profile:", error);
+    setMessage(`Error: ${error.message}`);
   }
+};
+
 
   if (loading) {
     return (
@@ -149,14 +142,14 @@ useEffect(() => {
               <div className="user-name">{userData.fullName}</div>
               <div className="user-email">{userData.email}</div>
 
-              <div className="badges-container">
+              {/* <div className="badges-container">
                 <div className={`badge ${userData.isVerified ? "badge-verified" : "badge-unverified"}`}>
                   {userData.isVerified ? "Verified" : "Unverified"}
                 </div>
                 <div className={`badge ${userData.isActive ? "badge-active" : "badge-inactive"}`}>
                   {userData.isActive ? "Active" : "Inactive"}
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="card-content">
@@ -169,24 +162,9 @@ useEffect(() => {
             </div>
           </div>
 
-          {/* Right Side - Form */}
+       
           <div className="form-section">
-            <div className="form-actions">
-              {!isEditing ? (
-                <button className="edit-button" onClick={() => setIsEditing(true)}>
-                  Edit Profile
-                </button>
-              ) : (
-                <>
-                  <button className="save-button" onClick={handleSave}>
-                    Save Changes
-                  </button>
-                  <button className="cancel-button" onClick={() => setIsEditing(false)}>
-                    Cancel
-                  </button>
-                </>
-              )}
-            </div>
+           
 
             <div className="form-content">
               <div className="form-grid">
@@ -250,18 +228,33 @@ useEffect(() => {
                   )}
                 </div>
               </div>
+ 
+              {/* <div className="separator"></div> */}
 
-              <div className="separator"></div>
-
-              <div className="account-info">
+              {/* <div className="account-info">
                 <div className="info-item">
                   <div className="info-label">User ID</div>
                   <div className="info-value">{userData._id}</div>
                 </div>
-              </div>
+              </div> */}
+            </div>
+             <div className="form-actionsb">
+              {!isEditing ? (
+                <button className="edit-button edit-button-positioned" onClick={() => setIsEditing(true)}>
+                  Edit Profile
+                </button>
+              ) : (
+                <>
+                  <button className="save-button" onClick={handleSave}>
+                    Save Changes
+                  </button>
+                
+                </>
+              )}
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   )

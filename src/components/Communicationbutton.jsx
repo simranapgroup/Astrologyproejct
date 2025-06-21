@@ -1,81 +1,99 @@
-"use client"
-import { MessageCircle, Phone, ShoppingCart, Flame } from "lucide-react"
-import { useState, useEffect } from "react"
-import "../css/Communicationbutton.css"
+import { MessageCircle, Phone, ShoppingCart, Flame, LightbulbIcon } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../css/Communicationbutton.css";
 
 export default function Communicationbutton() {
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-    checkScreenSize()
-    window.addEventListener("resize", checkScreenSize)
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
 
-    return () => window.removeEventListener("resize", checkScreenSize)
-  }, [])
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const services = [
     {
       icon: MessageCircle,
       title: "Chat with Astrologer",
       containerClass: "green",
+      path: "/chat",
     },
     {
       icon: Phone,
       title: "Talk to Astrologer",
       containerClass: "orange",
+      path: "/call",
     },
     {
       icon: ShoppingCart,
       title: "Astromall Shop",
       containerClass: "golden",
+      path: "/shop",
     },
     {
       icon: Flame,
       title: "Book A Pooja",
       containerClass: "dark-green",
+      path: "/pooja",
     },
-  ]
+    {
+      icon: LightbulbIcon,
+      title: "Live With Astrologer",
+      containerClass: "dark-green",
+      path: "/live",
+    },
+  ];
 
   const renderMobileLayout = () => {
-    const rows = []
+    const rows = [];
     for (let i = 0; i < services.length; i += 2) {
-      const rowServices = services.slice(i, i + 2)
+      const rowServices = services.slice(i, i + 2);
       rows.push(
         <div key={i} className="mobile-row">
           {rowServices.map((service, index) => {
-            const IconComponent = service.icon
+            const IconComponent = service.icon;
             return (
-              <div key={i + index} className="service-card mobile-card">
+              <Link
+                to={service.path || "#"}
+                key={i + index}
+                className="service-card mobile-card"
+              >
                 <div className={`icon-container ${service.containerClass}`}>
                   <IconComponent className="icon" />
                 </div>
                 <h3 className="service-title">{service.title}</h3>
-              </div>
-            )
+              </Link>
+            );
           })}
-        </div>,
-      )
+        </div>
+      );
     }
-    return rows
-  }
+    return rows;
+  };
 
   const renderDesktopLayout = () => {
     return services.map((service, index) => {
-      const IconComponent = service.icon
+      const IconComponent = service.icon;
       return (
-        <div key={index} className="service-card">
+        <Link
+          to={service.path || "#"}
+          key={index}
+          className="service-card"
+        >
           <div className={`icon-container ${service.containerClass}`}>
             <IconComponent className="icon" />
           </div>
           <h3 className="service-title">{service.title}</h3>
-        </div>
-      )
-    })
-  }
+        </Link>
+      );
+    });
+  };
 
   return (
     <div>
@@ -97,5 +115,5 @@ export default function Communicationbutton() {
         )}
       </div>
     </div>
-  )
+  );
 }
