@@ -240,7 +240,7 @@
   position: absolute;
   /* top: 50%; */
   left: -12%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   width: 127%;
   height: 140%;
   z-index: 1;
@@ -275,7 +275,7 @@
 }
 
 .person-img {
-  height: 110%;
+  height: 120%;
   width: auto;
   object-fit: contain;
 }
@@ -403,12 +403,12 @@
     position: absolute;
     /* top: 50%;
     left: 50%; */
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
   }
 
   .service-img {
     width: 105%;
-    height: 110%;
+    height: 120%;
     object-fit: contain;
   }
 
@@ -470,7 +470,7 @@
     height: 140%;
     /* top: 50%;
     left: 50%; */
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
   }
 
   .service-img {
@@ -511,7 +511,7 @@
     height: 130%;
     /* top: 50%;
     left: 50%; */
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
   }
 
   .service-img {

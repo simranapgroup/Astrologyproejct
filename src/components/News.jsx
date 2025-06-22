@@ -140,7 +140,7 @@ const News = () => {
 
   return (
     <div className="news-section">
-      <div className="container">
+      <div className="container1">
         <div className="news-header">
           <h2>AstroTalk in AP</h2>
         </div>

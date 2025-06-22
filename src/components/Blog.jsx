@@ -134,7 +134,7 @@ const Blog = () => {
 
   return (
     <div className="blog-section">
-      <div className="container">
+      <div className="container1">
         <div className="blog-header">
           <h2>Latest From Blog</h2>
           <p>Top Astrologers. 24 * 7 customer support. Happy to help</p>
